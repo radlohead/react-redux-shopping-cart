@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {
+    PRODUCTS_REQUEST,
     PRODUCTS_FETCHED,
     PRODUCTS_ERROR,
     COUPONS_REQUEST,
@@ -10,6 +11,8 @@ import * as Types from '../types/IReducerTypes';
 
 const products = (state = {}, action: Types.IReducer['action']) => {
     switch(action.type) {
+        case PRODUCTS_REQUEST:
+            return state;
         case PRODUCTS_FETCHED:
             return {
                 ...state,

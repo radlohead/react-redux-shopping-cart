@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { fetchProducts } from '../actions';
+import { requestProducts } from '../actions';
 import { Products } from './index';
 import * as Types from '../types/IProductsTypes';
 
 interface IProductsAsyncProps {
     productsJSON: Types.IProductsJSON,
-    onFetchProducts(): void;
+    onRequestProducts(): void;
 }
 
 class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
     constructor(props: IProductsAsyncProps) {
         super(props);
-        const { productsJSON, onFetchProducts } = props;
-        if(!productsJSON) onFetchProducts();
+        const { onRequestProducts } = props;
+        onRequestProducts();
     }
 
     public render(): JSX.Element | null {
@@ -41,7 +41,7 @@ const mapStateToProps = (state: IMapStateToProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onFetchProducts: bindActionCreators(fetchProducts, dispatch)
+        onRequestProducts: bindActionCreators(requestProducts, dispatch)
     }
 }
 

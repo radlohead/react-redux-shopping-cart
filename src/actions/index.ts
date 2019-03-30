@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
-import { 
+import {
+    PRODUCTS_REQUEST,
     PRODUCTS_FETCHED, 
     PRODUCTS_ERROR,
     COUPONS_REQUEST,
@@ -19,29 +20,42 @@ interface IFetchProducts {
     availableCoupon?: boolean
 }
 
-export const fetchProducts = () => {
-    return async (dispatch: Dispatch) => {
-        const response = await fetch('http://localhost:4000/products');
-        const responseData = await response.json();
-        responseData.map((item: IFetchProducts) => {
-            item.count = 1,
-            item.isChecked = false,
-            item.isInWishList = false
-        });
-        
-        try {
-            dispatch({
-                type: PRODUCTS_FETCHED,
-                productsJSON: responseData
-            });
-        } catch(err) {
-            dispatch({
-                type: PRODUCTS_ERROR,
-                productsJSON: err
-            });
-        }
+export const requestProducts = () => {
+    return {
+        type: PRODUCTS_REQUEST
     }
 }
+
+export const fetchProducts = (productsJSON: any) => {
+    return {
+        type: PRODUCTS_FETCHED,
+        productsJSON
+    }
+}
+
+// export const fetchProducts = () => {
+//     return async (dispatch: Dispatch) => {
+//         const response = await fetch('http://localhost:4000/products');
+//         const responseData = await response.json();
+//         responseData.map((item: IFetchProducts) => {
+//             item.count = 1,
+//             item.isChecked = false,
+//             item.isInWishList = false
+//         });
+        
+//         try {
+//             dispatch({
+//                 type: PRODUCTS_FETCHED,
+//                 productsJSON: responseData
+//             });
+//         } catch(err) {
+//             dispatch({
+//                 type: PRODUCTS_ERROR,
+//                 productsJSON: err
+//             });
+//         }
+//     }
+// }
 
 interface IFetchCoupons {
     type: string,

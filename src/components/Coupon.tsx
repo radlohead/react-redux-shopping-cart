@@ -7,14 +7,13 @@ import * as Types from '../types/ICouponsTypes';
 interface ICouponProps {
     couponsJSON: Types.ICouponsJSON,
     onRequestCoupons(): void;
-    // onFetchCoupons(): void;
 }
 
 class Coupon extends React.PureComponent<ICouponProps> {
     constructor(props: ICouponProps) {
         super(props);
-        const { couponsJSON, onRequestCoupons } = props;
-        if(!couponsJSON) onRequestCoupons();
+        const { onRequestCoupons } = props;
+        onRequestCoupons();
     }
     public render(): JSX.Element {
         return (
