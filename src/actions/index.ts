@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { 
     PRODUCTS_FETCHED, 
     PRODUCTS_ERROR,
+    COUPONS_REQUEST,
     COUPONS_FETCHED,
     COUPONS_ERROR
 } from './ActionTypes';
@@ -49,21 +50,15 @@ interface IFetchCoupons {
     discountAmount?: number
 }
 
-export const fetchCoupons = () => {
-    return async (dispatch: Dispatch) => {
-        const response = await fetch('http://localhost:4000/coupons');
-        const responseData: IFetchCoupons[] = await response.json();
+export const requestCoupons = () => {
+    return {
+        type: COUPONS_REQUEST
+    }
+}
 
-        try {
-            dispatch({
-                type: COUPONS_FETCHED,
-                couponsJSON: responseData
-            });
-        } catch(err) {
-            dispatch({
-                type: COUPONS_ERROR,
-                couponsJSON: err
-            });
-        }
+export const fetchCoupons = (couponsJSON: any) => {
+    return {
+        type: COUPONS_FETCHED,
+        couponsJSON
     }
 }

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {
     PRODUCTS_FETCHED,
     PRODUCTS_ERROR,
+    COUPONS_REQUEST,
     COUPONS_FETCHED,
     COUPONS_ERROR
 } from '../actions/ActionTypes';
@@ -26,6 +27,8 @@ const products = (state = {}, action: Types.IReducer['action']) => {
 
 const coupons = (state = {}, action: Types.IReducer['action']) => {
     switch(action.type) {
+        case COUPONS_REQUEST:
+            return state;
         case COUPONS_FETCHED:
             return {
                 ...state,

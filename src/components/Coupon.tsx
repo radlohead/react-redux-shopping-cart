@@ -1,19 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { fetchCoupons } from '../actions';
+import { requestCoupons } from '../actions';
 import * as Types from '../types/ICouponsTypes';
 
 interface ICouponProps {
     couponsJSON: Types.ICouponsJSON,
-    onFetchCoupons(): void;
+    onRequestCoupons(): void;
+    // onFetchCoupons(): void;
 }
 
 class Coupon extends React.PureComponent<ICouponProps> {
     constructor(props: ICouponProps) {
         super(props);
-        const { couponsJSON, onFetchCoupons } = props;
-        if(!couponsJSON) onFetchCoupons();
+        const { couponsJSON, onRequestCoupons } = props;
+        if(!couponsJSON) onRequestCoupons();
     }
     public render(): JSX.Element {
         return (
@@ -36,7 +37,7 @@ const mapStateToProps = (state: IMapStateToProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onFetchCoupons: bindActionCreators(fetchCoupons, dispatch)
+        onRequestCoupons: bindActionCreators(requestCoupons, dispatch)
     }
 }
 
