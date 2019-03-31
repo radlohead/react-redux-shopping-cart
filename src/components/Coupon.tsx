@@ -1,43 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
-import { requestCoupons } from '../actions';
 import * as Types from '../types/ICouponsTypes';
 
 interface ICouponProps {
-    couponsJSON: Types.ICouponsJSON,
-    onRequestCoupons(): void;
+    couponsJSON: Types.ICouponsJSON
 }
 
-class Coupon extends React.PureComponent<ICouponProps> {
+class Coupon extends React.Component<ICouponProps> {
     constructor(props: ICouponProps) {
         super(props);
-        const { onRequestCoupons } = props;
-        onRequestCoupons();
     }
+
     public render(): JSX.Element {
+        const { couponsJSON } = this.props;
+
         return (
             <>
-                Coupon
+                coupons
             </>
         )
     }
 }
 
-interface IMapStateToProps {
-    coupons: ICouponProps
-}
-
-const mapStateToProps = (state: IMapStateToProps) => {
-    return {
-        couponsJSON: state.coupons.couponsJSON
-    }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        onRequestCoupons: bindActionCreators(requestCoupons, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Coupon);
+export default Coupon;

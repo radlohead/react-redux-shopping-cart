@@ -1,3 +1,4 @@
+export { default as CouponAsync } from './CouponAsync';
 export { default as Coupon } from './Coupon';
 export { default as Home } from './Home';
 export { default as Menu } from './Menu';
