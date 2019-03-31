@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import * as Types from '../types/ICouponsTypes';
 
 interface ICouponProps {
@@ -10,12 +10,25 @@ class Coupon extends React.Component<ICouponProps> {
         super(props);
     }
 
+    private handleChangeCoupon(e: ChangeEvent<HTMLSelectElement>) {
+        console.log(e.target.value);
+    }
+
     public render(): JSX.Element {
         const { couponsJSON } = this.props;
 
         return (
             <>
-                coupons
+                <select onChange={this.handleChangeCoupon.bind(this)}>
+                    {(couponsJSON as any).map((item: Types.ICouponsJSON['couponsJSON']) => {
+                        return (
+                            <option
+                                key={`${item.type}_${item.title}`}
+                                value={JSON.stringify(item)}
+                            >{item.title}</option>
+                        )
+                    })}
+                </select>
             </>
         )
     }

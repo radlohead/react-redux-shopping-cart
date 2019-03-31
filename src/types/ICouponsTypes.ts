@@ -2,6 +2,7 @@ export interface ICouponsJSON {
     couponsJSON: {
         type: string,
         title: string,
-        discountAmount: number
-    }[]
+        discountAmount?: number,
+        discountRate?: number
+    }
 }
