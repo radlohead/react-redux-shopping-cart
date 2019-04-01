@@ -13,8 +13,8 @@ interface IProductsAsyncProps {
 class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
     constructor(props: IProductsAsyncProps) {
         super(props);
-        const { onRequestProducts } = props;
-        onRequestProducts();
+        const { productsJSON, onRequestProducts } = props;
+        if(!productsJSON) onRequestProducts();
     }
 
     public render(): JSX.Element | null {

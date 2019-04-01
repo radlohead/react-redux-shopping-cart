@@ -1,23 +1,14 @@
-import { call, put, take } from 'redux-saga/effects';
 import { requestProducts, fetchProducts } from '../actions';
 import { PRODUCTS_REQUEST, PRODUCTS_ERROR } from '../actions/ActionTypes';
+import { fetchItemList } from './withGetApi';
+import * as Types from '../types/sagasTypes';
 
-export const fetchProductApi = async () => {
-    const response = await fetch('http://localhost:4000/products');
-    return await response.json();
+export const productListData: Types.IFetchItemList = {
+    url: 'http://localhost:4000/products',
+    requestItems: requestProducts,
+    fetchItems: fetchProducts,
+    REQUEST_ITEM: PRODUCTS_REQUEST,
+    ERROR_ITEM: PRODUCTS_ERROR
 }
 
-export function* fetchProduct() {
-    const productsJSON = yield call(fetchProductApi);
-    try {
-        yield put(requestProducts());
-        yield put(fetchProducts(productsJSON));
-    } catch(e) {
-        yield put({ type: PRODUCTS_ERROR, message: e.message });
-    }
-}
-
-export function* fetchProductList() {
-    yield take(PRODUCTS_REQUEST);
-    yield call(fetchProduct);
-}
+export default fetchItemList(productListData);
