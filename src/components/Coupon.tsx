@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import * as Types from '../types/ICouponsTypes';
+import * as Types from '../types/CouponsTypes';
 
 interface ICouponProps {
     couponsJSON: Types.ICouponsJSON

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Types from '../types/IProductsTypes';
+import * as Types from '../types/ProductsTypes';
 import '../css/components/Products.scss';
 
 interface IProductsProps {
