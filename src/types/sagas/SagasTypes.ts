@@ -1,9 +1,9 @@
 export interface IFetchItemList {
     url: string,
     requestItems(): { type: string },
-    fetchItems(json?: string): {
+    fetchItems(json?: any): {
         type: string,
-        json?: string
+        json?: any
     },
     REQUEST_ITEM: string,
     ERROR_ITEM: string

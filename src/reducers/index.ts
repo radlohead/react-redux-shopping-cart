@@ -14,6 +14,11 @@ const products = (state = {}, action: Types.IReducer['action']) => {
         case PRODUCTS_REQUEST:
             return state;
         case PRODUCTS_FETCHED:
+            (action.productsJSON as any).forEach((item: Types.IFetchProducts) => {
+                item.count = 1,
+                item.isChecked = false,
+                item.isInWishList = false
+            });
             return {
                 ...state,
                 productsJSON: action.productsJSON
