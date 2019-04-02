@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { combineReducers } from 'redux';
 import {
     PRODUCTS_REQUEST,
@@ -9,10 +10,10 @@ import {
 } from '../actions/ActionTypes';
 import * as Types from '../types/reducers/ReducerTypes';
 
-const products = (state = {}, action: Types.IReducer['action']) => {
+const products = produce((draft = {}, action: Types.IReducer['action']) => {
     switch(action.type) {
         case PRODUCTS_REQUEST:
-            return state;
+            return draft;
         case PRODUCTS_FETCHED:
             (action.productsJSON as any).forEach((item: Types.IFetchProducts) => {
                 item.count = 1,
@@ -20,37 +21,31 @@ const products = (state = {}, action: Types.IReducer['action']) => {
                 item.isInWishList = false
             });
             return {
-                ...state,
+                ...draft,
                 productsJSON: action.productsJSON
             }
         case PRODUCTS_ERROR:
             return {
-                ...state,
+                ...draft,
                 productsJSON: action.productsJSON
             }
         default:
-            return state;
+            return draft;
     }
-}
+});
 
-const coupons = (state = {}, action: Types.IReducer['action']) => {
+const coupons = produce((draft = {}, action: Types.IReducer['action']) => {
     switch(action.type) {
         case COUPONS_REQUEST:
-            return state;
+            return draft;
         case COUPONS_FETCHED:
-            return {
-                ...state,
-                couponsJSON: action.couponsJSON
-            }
+            draft.couponsJSON = action.couponsJSON
         case COUPONS_ERROR:
-            return {
-                ...state,
-                couponsJSON: action.couponsJSON
-            }
+            draft.couponsJSON = action.couponsJSON
         default:
-            return state;
+            return draft;
     }
-}
+});
 
 export default combineReducers({
     products,
