@@ -5,7 +5,7 @@ interface ICouponProps {
     couponsJSON: Types.ICouponsJSON
 }
 
-class Coupon extends React.Component<ICouponProps> {
+class Coupon extends React.PureComponent<ICouponProps> {
     constructor(props: ICouponProps) {
         super(props);
     }

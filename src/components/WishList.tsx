@@ -1,7 +1,7 @@
 import React from 'react';
 import { CouponAsync } from './index';
 
-class WishList extends React.Component {
+class WishList extends React.PureComponent {
     public render(): JSX.Element {
         return (
             <>
