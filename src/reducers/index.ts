@@ -20,15 +20,9 @@ const products = produce((draft = {}, action: Types.IReducer['action']) => {
                 item.isChecked = false,
                 item.isInWishList = false
             });
-            return {
-                ...draft,
-                productsJSON: action.productsJSON
-            }
+            draft.productsJSON = action.productsJSON
         case PRODUCTS_ERROR:
-            return {
-                ...draft,
-                productsJSON: action.productsJSON
-            }
+            draft.productsJSON = action.productsJSON
         default:
             return draft;
     }
