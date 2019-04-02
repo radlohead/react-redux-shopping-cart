@@ -7,7 +7,7 @@ import {
     COUPONS_FETCHED,
     COUPONS_ERROR
 } from '../actions/ActionTypes';
-import * as Types from '../types/ReducerTypes';
+import * as Types from '../types/reducers/ReducerTypes';
 
 const products = (state = {}, action: Types.IReducer['action']) => {
     switch(action.type) {

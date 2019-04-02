@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { requestCoupons } from '../actions';
 import Coupon from './Coupon';
-import * as Types from '../types/CouponsTypes';
+import * as Types from '../types/components/CouponsTypes';
 
 interface ICouponAsyncProps {
     couponsJSON: Types.ICouponsJSON;

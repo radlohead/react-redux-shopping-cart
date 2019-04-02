@@ -1,5 +1,5 @@
 import { put, take} from 'redux-saga/effects';
-import * as Types from '../types/sagasTypes';
+import * as Types from '../types/sagas/SagasTypes';
 
 const fetchItemApi = async (url: string) => {
     const response = await fetch(url);

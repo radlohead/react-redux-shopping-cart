@@ -1,7 +1,7 @@
 import { requestCoupons, fetchCoupons } from '../actions';
 import { COUPONS_REQUEST, COUPONS_ERROR } from '../actions/ActionTypes';
 import { fetchItemList } from './withGetApi';
-import * as Types from '../types/sagasTypes';
+import * as Types from '../types/sagas/SagasTypes';
 
 export const couponListData: Types.IFetchItemList = {
     url: 'http://localhost:4000/coupons',

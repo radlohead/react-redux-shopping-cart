@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { requestProducts } from '../actions';
 import { Products } from './index';
-import * as Types from '../types/ProductsTypes';
+import * as Types from '../types/components/ProductsTypes';
 
 interface IProductsAsyncProps {
     productsJSON: Types.IProductsJSON,
