@@ -20,9 +20,11 @@ const products = produce((draft = {}, action: Types.IReducer['action']) => {
                 item.isChecked = false,
                 item.isInWishList = false
             });
-            draft.productsJSON = action.productsJSON
+            draft.productsJSON = action.productsJSON;
+            return;
         case PRODUCTS_ERROR:
-            draft.productsJSON = action.productsJSON
+            draft.productsJSON = action.productsJSON;
+            return;
         default:
             return draft;
     }
@@ -33,9 +35,11 @@ const coupons = produce((draft = {}, action: Types.IReducer['action']) => {
         case COUPONS_REQUEST:
             return draft;
         case COUPONS_FETCHED:
-            draft.couponsJSON = action.couponsJSON
+            draft.couponsJSON = action.couponsJSON;
+            return;
         case COUPONS_ERROR:
-            draft.couponsJSON = action.couponsJSON
+            draft.couponsJSON = action.couponsJSON;
+            return;
         default:
             return draft;
     }
