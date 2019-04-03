@@ -14,6 +14,10 @@ export interface IFetchProducts {
     availableCoupon?: boolean
 }
 
+export interface IUpdateProducts {
+    productsJSON: IFetchProducts
+}
+
 export interface IFetchCoupons {
     type: string,
     title: string,

@@ -1,6 +1,7 @@
 import {
     PRODUCTS_REQUEST,
     PRODUCTS_FETCHED, 
+    PRODUCTS_UPDATE,
     COUPONS_REQUEST,
     COUPONS_FETCHED
 } from './ActionTypes';
@@ -15,6 +16,13 @@ export const requestProducts = () => {
 export const fetchProducts = (productsJSON: Types.IFetchProducts) => {
     return {
         type: PRODUCTS_FETCHED,
+        productsJSON
+    }
+}
+
+export const updateProducts = (productsJSON: Types.IUpdateProducts) => {
+    return {
+        type: PRODUCTS_UPDATE,
         productsJSON
     }
 }

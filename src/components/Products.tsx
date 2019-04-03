@@ -1,14 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { updateProducts } from '../actions';
 import * as Types from '../types/components/ProductsTypes';
 import '../css/components/Products.scss';
 
 interface IProductsProps {
-    productsJSON: Types.IProductsJSON
+    productsJSON: Types.IProductsJSON;
+    onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts;
 }
 
 class Products extends React.PureComponent<IProductsProps> {
     constructor(props: IProductsProps) {
         super(props);
+    }
+
+    private handleClickWishListRemove(item: Types.IProductsJSON['productsJSON']) {
+        const { productsJSON, onUpdateProducts } = this.props;
+        item.isInWishList = !item.isInWishList;
+        onUpdateProducts(productsJSON);
     }
 
     public renderProductItems(): JSX.Element {
@@ -23,8 +33,11 @@ class Products extends React.PureComponent<IProductsProps> {
                             <div className="product__item__info">
                                 <h2 className="product_item__info-title">{item.title}</h2>
                             </div>
-                            <button className="product__item--wishList-add"></button>
-                            <button className="product__item--wishList-remove"></button>
+                            {item.isInWishList && <button className="product__item--wishList-add">장바구니 담기</button>}
+                            {!item.isInWishList && <button 
+                                className="product__item--wishList-remove"
+                                onClick={this.handleClickWishListRemove.bind(this, item)}
+                            >장바구니 빼기</button>}
                         </li>
                     )
                 })}
@@ -41,4 +54,10 @@ class Products extends React.PureComponent<IProductsProps> {
     }
 }
 
-export default Products;
+const mapDispatchToProps = (dispatch: Dispatch) => {
+    return {
+        onUpdateProducts: bindActionCreators(updateProducts, dispatch)
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Products);
