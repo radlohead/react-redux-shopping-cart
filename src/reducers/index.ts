@@ -34,35 +34,6 @@ const products = produce((draft = {}, action: Types.IReducer['action']) => {
     }
 });
 
-// const products = (state = {}, action: Types.IReducer['action']) => {
-//     switch(action.type) {
-//         case PRODUCTS_REQUEST:
-//             return state;
-//         case PRODUCTS_FETCHED:
-//             (action.productsJSON as any).forEach((item: Types.IFetchProducts) => {
-//                 item.count = 1,
-//                 item.isChecked = false,
-//                 item.isInWishList = false
-//             });
-//             return {
-//                 ...state,
-//                 productsJSON: action.productsJSON
-//             }
-//         case PRODUCTS_UPDATE:
-//             return {
-//                 ...state,
-//                 productsJSON: Object.assign([], action.productsJSON)
-//             }
-//         case PRODUCTS_ERROR:
-//             return {
-//                 ...state,
-//                 productsJSON: action.productsJSON
-//             }
-//         default:
-//             return state;
-//     }
-// };
-
 const coupons = produce((draft = {}, action: Types.IReducer['action']) => {
     switch(action.type) {
         case COUPONS_REQUEST:
