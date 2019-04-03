@@ -1,4 +1,5 @@
 export interface IProductsJSON {
+    map?: any,
     productsJSON: {
         availableCoupon?: boolean,
         coverImage: string,
