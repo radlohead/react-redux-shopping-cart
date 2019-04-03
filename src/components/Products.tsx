@@ -41,11 +41,11 @@ class Products extends React.PureComponent<IProductsProps> {
                             </div>
                             {!item.isInWishList && <button 
                                 className="product__item--wishList-add"
-                                onClick={this.handleClickWishListAdd.bind(this, item)}
+                                onClick={() => this.handleClickWishListAdd(item)}
                             >장바구니 담기</button>}
                             {item.isInWishList && <button 
                                 className="product__item--wishList-remove"
-                                onClick={this.handleClickWishListRemove.bind(this, item)}
+                                onClick={() => this.handleClickWishListRemove(item)}
                             >장바구니 빼기</button>}
                         </li>
                     )
