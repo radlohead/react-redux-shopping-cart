@@ -1,8 +1,8 @@
 export interface ICouponsJSON {
-    couponsJSON: {
-        type: string,
-        title: string,
-        discountAmount?: number,
-        discountRate?: number
-    }
+  couponsJSON: {
+    type: string,
+    title: string,
+    discountAmount?: number,
+    discountRate?: number,
+  };
 }

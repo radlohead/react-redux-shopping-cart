@@ -70,7 +70,8 @@
     "dev": "node scripts/start.js",
     "server": "nodemon server/app.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "lint": "tslint -p ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -89,7 +90,10 @@
     "@types/redux-logger": "^3.0.7",
     "@types/redux-saga": "^0.10.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "tslint": "^5.15.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "tslint-config-prettier": "^1.18.0"
   },
   "jest": {
     "collectCoverageFrom": [

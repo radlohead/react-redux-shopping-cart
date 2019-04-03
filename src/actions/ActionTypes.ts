@@ -16,5 +16,5 @@ export const WISHLIST_MAX_ITEMS_NO = 3;
 
 export enum COUPON_TYPE {
     RATE = 'rate',
-    AMOUNT = 'amount'
+    AMOUNT = 'amount',
 }

@@ -4,7 +4,7 @@ import { fetchItemList } from './withGetApi';
 import * as Types from '../types/sagas/SagasTypes';
 
 export const productListData: Types.IFetchItemList = {
-    url: 'http://localhost:4000/products',
+    url: "http://localhost:4000/products",
     requestItems: requestProducts,
     fetchItems: fetchProducts,
     REQUEST_ITEM: PRODUCTS_REQUEST,
