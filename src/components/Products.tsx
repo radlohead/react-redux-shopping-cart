@@ -15,6 +15,12 @@ class Products extends React.PureComponent<IProductsProps> {
         super(props);
     }
 
+    private handleClickWishListAdd(item: Types.IProductsJSON['productsJSON']) {
+        const { productsJSON, onUpdateProducts } = this.props;
+        item.isInWishList = !item.isInWishList;
+        onUpdateProducts(productsJSON);
+    }
+
     private handleClickWishListRemove(item: Types.IProductsJSON['productsJSON']) {
         const { productsJSON, onUpdateProducts } = this.props;
         item.isInWishList = !item.isInWishList;
@@ -33,7 +39,10 @@ class Products extends React.PureComponent<IProductsProps> {
                             <div className="product__item__info">
                                 <h2 className="product_item__info-title">{item.title}</h2>
                             </div>
-                            {item.isInWishList && <button className="product__item--wishList-add">장바구니 담기</button>}
+                            {item.isInWishList && <button 
+                                className="product__item--wishList-add"
+                                onClick={this.handleClickWishListAdd.bind(this, item)}
+                            >장바구니 담기</button>}
                             {!item.isInWishList && <button 
                                 className="product__item--wishList-remove"
                                 onClick={this.handleClickWishListRemove.bind(this, item)}
