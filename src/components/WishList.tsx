@@ -1,7 +1,7 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { CouponAsync } from './index';
-import * as Types from '../types/components/ProductsTypes';
+import React from 'react'
+import { connect } from 'react-redux'
+import { CouponAsync } from './index'
+import * as Types from '../types/components/ProductsTypes'
 
 interface IWishListProps {
     productsJSON: Types.IProductsJSON
@@ -9,20 +9,22 @@ interface IWishListProps {
 
 class WishList extends React.PureComponent<IWishListProps> {
     private renderWishList(): JSX.Element | null {
-        const { productsJSON } = this.props;
-        if(!productsJSON) return null;
+        const { productsJSON } = this.props
+        if (!productsJSON) return null
 
         return (
             <ul>
-                {productsJSON.map((item: Types.IProductsJSON['productsJSON']) => {
-                    if(!item.isInWishList) return;
+                {productsJSON.map(
+                    (item: Types.IProductsJSON['productsJSON']) => {
+                        if (!item.isInWishList) return
 
-                    return (
-                        <li key={`${item.id}_${item.score}`}>
-                            {item.title}
-                        </li>
-                    )
-                })}
+                        return (
+                            <li key={`${item.id}_${item.score}`}>
+                                {item.title}
+                            </li>
+                        )
+                    }
+                )}
             </ul>
         )
     }
@@ -47,4 +49,4 @@ const mapStateToProps = (state: IMapStateToProps) => {
     }
 }
 
-export default connect(mapStateToProps)(WishList);
+export default connect(mapStateToProps)(WishList)
