@@ -16,7 +16,7 @@ const products = produce((draft = {}, action: Types.IReducer['action']) => {
         case PRODUCTS_REQUEST:
             return draft
         case PRODUCTS_FETCHED:
-            ;(action.productsJSON as any).forEach(
+            Object(action.productsJSON).forEach(
                 (item: Types.IFetchProducts) => {
                     ;(item.count = 1),
                         (item.isChecked = false),
