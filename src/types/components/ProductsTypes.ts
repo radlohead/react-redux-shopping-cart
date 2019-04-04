@@ -1,19 +1,19 @@
 export interface IProductsJSON {
-    map?: any
+    map?: any;
     productsJSON: {
-        availableCoupon?: boolean
-        coverImage: string
-        id: string
-        price: number
-        score: number
-        title: string
-        count?: number
-        isChecked?: boolean
-        isInWishList?: boolean
-    }
+        availableCoupon?: boolean;
+        coverImage: string;
+        id: string;
+        price: number;
+        score: number;
+        title: string;
+        count?: number;
+        isChecked?: boolean;
+        isInWishList?: boolean;
+    };
 }
 
 export interface IUpdateProducts {
-    type: string
-    productsJSON: IProductsJSON
+    type: string;
+    productsJSON: IProductsJSON;
 }

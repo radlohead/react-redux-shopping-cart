@@ -1,36 +1,36 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
-import { updateProducts } from '../actions'
-import * as Types from '../types/components/ProductsTypes'
-import '../css/components/Products.scss'
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { updateProducts } from '../actions';
+import * as Types from '../types/components/ProductsTypes';
+import '../css/components/Products.scss';
 
 interface IProductsProps {
-    productsJSON: Types.IProductsJSON
-    onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts
+    productsJSON: Types.IProductsJSON;
+    onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts;
 }
 
 class Products extends React.PureComponent<IProductsProps> {
     constructor(props: IProductsProps) {
-        super(props)
+        super(props);
     }
 
     private handleClickWishListAdd(item: Types.IProductsJSON['productsJSON']) {
-        const { productsJSON, onUpdateProducts } = this.props
-        item.isInWishList = !item.isInWishList
-        onUpdateProducts(productsJSON)
+        const { productsJSON, onUpdateProducts } = this.props;
+        item.isInWishList = !item.isInWishList;
+        onUpdateProducts(productsJSON);
     }
 
     private handleClickWishListRemove(
         item: Types.IProductsJSON['productsJSON']
     ) {
-        const { productsJSON, onUpdateProducts } = this.props
-        item.isInWishList = !item.isInWishList
-        onUpdateProducts(productsJSON)
+        const { productsJSON, onUpdateProducts } = this.props;
+        item.isInWishList = !item.isInWishList;
+        onUpdateProducts(productsJSON);
     }
 
     public renderProductItems(): JSX.Element {
-        const { productsJSON } = this.props
+        const { productsJSON } = this.props;
 
         return (
             <ul className="product">
@@ -68,25 +68,25 @@ class Products extends React.PureComponent<IProductsProps> {
                                     </button>
                                 )}
                             </li>
-                        )
+                        );
                     }
                 )}
             </ul>
-        )
+        );
     }
 
     public render(): JSX.Element {
-        return <>{this.renderProductItems()}</>
+        return <>{this.renderProductItems()}</>;
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onUpdateProducts: bindActionCreators(updateProducts, dispatch)
-    }
-}
+    };
+};
 
 export default connect(
     null,
     mapDispatchToProps
-)(Products)
+)(Products);
