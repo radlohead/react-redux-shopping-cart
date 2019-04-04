@@ -20,7 +20,7 @@ class Coupon extends React.PureComponent<ICouponProps> {
         return (
             <>
                 <select onChange={this.handleChangeCoupon.bind(this)}>
-                    {(couponsJSON as any).map(
+                    {couponsJSON.map(
                         (item: Types.ICouponsJSON['couponsJSON']) => {
                             return (
                                 <option

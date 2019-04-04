@@ -34,7 +34,7 @@ class Products extends React.PureComponent<IProductsProps> {
 
         return (
             <ul className="product">
-                {(productsJSON as any).map(
+                {productsJSON.map(
                     (item: Types.IProductsJSON['productsJSON']) => {
                         return (
                             <li
