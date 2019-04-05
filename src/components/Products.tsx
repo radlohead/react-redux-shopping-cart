@@ -26,7 +26,6 @@ class Products extends React.PureComponent<IProductsProps, any> {
                     complete: true
                 });
             }
-            console.log('DOMContentLoaded', e.target.readyState);
         });
     }
 
@@ -46,7 +45,6 @@ class Products extends React.PureComponent<IProductsProps, any> {
 
     public renderProductItems(): JSX.Element {
         const { productsJSON } = this.props;
-        console.log('render: ');
 
         return (
             <ul className="product">
