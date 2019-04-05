@@ -4,15 +4,30 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { updateProducts } from '../actions';
 import * as Types from '../types/components/ProductsTypes';
 import '../css/components/Products.scss';
+import productsImg from '../images/components/Products/products-img_01.png';
 
 interface IProductsProps {
     productsJSON: Types.IProductsJSON;
     onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts;
 }
 
-class Products extends React.PureComponent<IProductsProps> {
+class Products extends React.PureComponent<IProductsProps, any> {
     constructor(props: IProductsProps) {
         super(props);
+        this.state = {
+            complete: false
+        };
+    }
+
+    componentDidMount() {
+        document.addEventListener('readystatechange', (e: any) => {
+            if (e.target.readyState === 'complete') {
+                this.setState({
+                    complete: true
+                });
+            }
+            console.log('DOMContentLoaded', e.target.readyState);
+        });
     }
 
     private handleClickWishListAdd(item: Types.IProductsJSON['productsJSON']) {
@@ -31,6 +46,7 @@ class Products extends React.PureComponent<IProductsProps> {
 
     public renderProductItems(): JSX.Element {
         const { productsJSON } = this.props;
+        console.log('render: ');
 
         return (
             <ul className="product">
@@ -41,7 +57,14 @@ class Products extends React.PureComponent<IProductsProps> {
                                 key={`${item.id}_${item.score}`}
                                 className="product__item"
                             >
-                                <img src={item.coverImage} alt={item.title} />
+                                <img
+                                    src={
+                                        this.state.complete
+                                            ? item.coverImage
+                                            : productsImg
+                                    }
+                                    alt={item.title}
+                                />
                                 <div className="product__item__info">
                                     <h2 className="product_item__info-title">
                                         {item.title}
