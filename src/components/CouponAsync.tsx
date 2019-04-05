@@ -20,7 +20,7 @@ class CouponAsync extends React.PureComponent<ICouponAsyncProps> {
         }
     }
 
-    public render(): JSX.Element | null {
+    public render(): JSX.Element {
         const { couponsJSON } = this.props;
         const couponsJSONCallCheck =
             Array.isArray(couponsJSON) && couponsJSON.length;
