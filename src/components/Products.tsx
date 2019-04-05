@@ -15,6 +15,8 @@ interface IProductsState {
     complete: boolean;
 }
 
+let isInitialRender: boolean = false;
+
 class Products extends React.PureComponent<IProductsProps, IProductsState> {
     constructor(props: IProductsProps) {
         super(props);
@@ -26,6 +28,7 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
     componentDidMount() {
         document.addEventListener('readystatechange', e => {
             if ((e.target as Document).readyState === 'complete') {
+                isInitialRender = true;
                 this.setState({
                     complete: true
                 });
@@ -61,7 +64,7 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
                             >
                                 <img
                                     src={
-                                        this.state.complete
+                                        this.state.complete || isInitialRender
                                             ? item.coverImage
                                             : ProductsImages[i]
                                     }
