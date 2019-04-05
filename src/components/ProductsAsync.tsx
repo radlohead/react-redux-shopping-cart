@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { requestProducts } from '../actions';
-import { Products } from './index';
+import { Products, Spinners } from './index';
 import * as Types from '../types/components/ProductsTypes';
-import { ClipLoader } from 'react-spinners';
 
 interface IProductsAsyncProps {
     productsJSON: Types.IProductsJSON;
@@ -30,12 +29,7 @@ class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
 
         return (
             <>
-                <ClipLoader
-                    sizeUnit={'px'}
-                    size={30}
-                    color={'#123abc'}
-                    loading={this.loading}
-                />
+                <Spinners loading={this.loading} />
                 {productsJSONCallCheck && (
                     <Products productsJSON={productsJSON} />
                 )}

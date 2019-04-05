@@ -5,3 +5,4 @@ export { default as Menu } from './Menu';
 export { default as ProductsAsync } from './ProductsAsync';
 export { default as Products } from './Products';
 export { default as WishList } from './WishList';
+export { default as Spinners } from './Spinners';

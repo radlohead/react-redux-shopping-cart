@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { requestCoupons } from '../actions';
-import Coupon from './Coupon';
+import { Coupon, Spinners } from './index';
 import * as Types from '../types/components/CouponsTypes';
-import { ClipLoader } from 'react-spinners';
 
 interface ICouponAsyncProps {
     couponsJSON: Types.ICouponsJSON;
@@ -30,12 +29,7 @@ class CouponAsync extends React.PureComponent<ICouponAsyncProps> {
 
         return (
             <>
-                <ClipLoader
-                    sizeUnit={'px'}
-                    size={30}
-                    color={'#123abc'}
-                    loading={this.loading}
-                />
+                <Spinners loading={this.loading} />
                 {couponsJSONCallCheck && <Coupon couponsJSON={couponsJSON} />}
             </>
         );
