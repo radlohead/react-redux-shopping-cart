@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { updateProducts } from '../actions';
 import * as Types from '../types/components/ProductsTypes';
 import '../css/components/Products.scss';
-import productsImg from '../images/components/Products/products-img_01.png';
+import ProductsImages from './ProductsImages';
 
 interface IProductsProps {
     productsJSON: Types.IProductsJSON;
@@ -51,7 +51,7 @@ class Products extends React.PureComponent<IProductsProps, any> {
         return (
             <ul className="product">
                 {productsJSON.map(
-                    (item: Types.IProductsJSON['productsJSON']) => {
+                    (item: Types.IProductsJSON['productsJSON'], i: number) => {
                         return (
                             <li
                                 key={`${item.id}_${item.score}`}
@@ -61,7 +61,7 @@ class Products extends React.PureComponent<IProductsProps, any> {
                                     src={
                                         this.state.complete
                                             ? item.coverImage
-                                            : productsImg
+                                            : ProductsImages[i]
                                     }
                                     alt={item.title}
                                 />
