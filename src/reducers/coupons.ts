@@ -7,11 +7,11 @@ import {
 import * as Types from '../types/reducers/ReducerTypes';
 
 type InitialStateCouponsType = {
-    couponsJSON: Types.IFetchCoupons | null;
+    couponsJSON: Types.IFetchCoupons | [];
 };
 
 const initialStateCoupons: InitialStateCouponsType = {
-    couponsJSON: null
+    couponsJSON: []
 };
 
 const coupons = produce(
