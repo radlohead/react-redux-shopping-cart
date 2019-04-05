@@ -1,14 +1,12 @@
 {
     "defaultSeverity": "error",
-    "extends": [
-        "tslint-config-airbnb",
-        "tslint-config-prettier"
-    ],
+    "extends": ["tslint-config-airbnb", "tslint-config-prettier"],
     "jsRules": {},
     "rules": {
         "import-name": false,
         "object-shorthand-properties-first": false,
-        "variable-name": false
+        "variable-name": false,
+        "no-boolean-literal-compare": false
     },
     "rulesDirectory": []
 }
