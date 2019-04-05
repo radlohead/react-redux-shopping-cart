@@ -12,13 +12,12 @@ interface IProductsAsyncProps {
 }
 
 class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
-    constructor(props: IProductsAsyncProps) {
-        super(props);
-        const { productsJSON, onRequestProducts } = props;
+    private loading = true;
+
+    componentDidMount() {
+        const { productsJSON, onRequestProducts } = this.props;
         if (!productsJSON) onRequestProducts();
     }
-
-    private loading = true;
 
     public render(): JSX.Element {
         const { productsJSON } = this.props;

@@ -11,9 +11,8 @@ interface ICouponAsyncProps {
 }
 
 class CouponAsync extends React.PureComponent<ICouponAsyncProps> {
-    constructor(props: ICouponAsyncProps) {
-        super(props);
-        const { couponsJSON, onRequestCoupons } = props;
+    componentDidMount() {
+        const { couponsJSON, onRequestCoupons } = this.props;
         if (!couponsJSON) onRequestCoupons();
     }
 
