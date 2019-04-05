@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { requestCoupons } from '../actions';
-import { Coupon, Spinners } from './index';
-import * as Types from '../types/components/CouponsTypes';
+import { requestCoupons } from '../../actions';
+import { Coupon, Spinners } from '../index';
+import * as Types from '../../types/components/CouponsTypes';
 
 interface ICouponAsyncProps {
     couponsJSON: Types.ICouponsJSON;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { requestProducts } from '../actions';
-import { Products, Spinners } from './index';
-import * as Types from '../types/components/ProductsTypes';
+import { requestProducts } from '../../actions';
+import { Products, Spinners } from '../index';
+import * as Types from '../../types/components/ProductsTypes';
 
 interface IProductsAsyncProps {
     productsJSON: Types.IProductsJSON;

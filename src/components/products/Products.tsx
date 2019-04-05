@@ -1,10 +1,10 @@
-import React, { DOMAttributes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { updateProducts } from '../actions';
-import * as Types from '../types/components/ProductsTypes';
-import '../css/components/Products.scss';
+import { updateProducts } from '../../actions';
+import * as Types from '../../types/components/ProductsTypes';
 import ProductsImages from './ProductsImages';
+import '../../css/components/Products.scss';
 
 interface IProductsProps {
     productsJSON: Types.IProductsJSON;
