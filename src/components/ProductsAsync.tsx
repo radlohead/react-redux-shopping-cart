@@ -16,12 +16,17 @@ class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
 
     componentDidMount() {
         const { productsJSON, onRequestProducts } = this.props;
-        if (!productsJSON) onRequestProducts();
+        if (Array.isArray(productsJSON) && !productsJSON.length) {
+            onRequestProducts();
+        }
     }
 
     public render(): JSX.Element {
         const { productsJSON } = this.props;
-        if (productsJSON) this.loading = false;
+        const productsJSONCallCheck =
+            Array.isArray(productsJSON) && productsJSON.length;
+
+        if (productsJSONCallCheck) this.loading = false;
 
         return (
             <>
@@ -31,7 +36,9 @@ class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
                     color={'#123abc'}
                     loading={this.loading}
                 />
-                {productsJSON && <Products productsJSON={productsJSON} />}
+                {productsJSONCallCheck && (
+                    <Products productsJSON={productsJSON} />
+                )}
             </>
         );
     }

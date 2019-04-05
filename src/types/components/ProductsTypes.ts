@@ -1,4 +1,5 @@
 export interface IProductsJSON {
+    length?: number;
     map?: any;
     productsJSON: {
         availableCoupon?: boolean;

@@ -8,11 +8,11 @@ import {
 import * as Types from '../types/reducers/ReducerTypes';
 
 type InitialStateProductsType = {
-    productsJSON: Types.IFetchProducts | null;
+    productsJSON: Types.IFetchProducts | [];
 };
 
 const initialStateProducts: InitialStateProductsType = {
-    productsJSON: null
+    productsJSON: []
 };
 
 const products = produce(
