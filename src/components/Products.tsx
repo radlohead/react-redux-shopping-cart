@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { DOMAttributes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { updateProducts } from '../actions';
@@ -11,7 +11,11 @@ interface IProductsProps {
     onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts;
 }
 
-class Products extends React.PureComponent<IProductsProps, any> {
+interface IProductsState {
+    complete: boolean;
+}
+
+class Products extends React.PureComponent<IProductsProps, IProductsState> {
     constructor(props: IProductsProps) {
         super(props);
         this.state = {
@@ -20,8 +24,8 @@ class Products extends React.PureComponent<IProductsProps, any> {
     }
 
     componentDidMount() {
-        document.addEventListener('readystatechange', (e: any) => {
-            if (e.target.readyState === 'complete') {
+        document.addEventListener('readystatechange', e => {
+            if ((e.target as Document).readyState === 'complete') {
                 this.setState({
                     complete: true
                 });
