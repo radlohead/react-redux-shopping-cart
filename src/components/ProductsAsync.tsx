@@ -4,26 +4,35 @@ import { bindActionCreators, Dispatch } from 'redux';
 import { requestProducts } from '../actions';
 import { Products } from './index';
 import * as Types from '../types/components/ProductsTypes';
+import { ClipLoader } from 'react-spinners';
 
 interface IProductsAsyncProps {
     productsJSON: Types.IProductsJSON;
     onRequestProducts(): void;
 }
 
-class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
+class ProductsAsync extends React.PureComponent<IProductsAsyncProps, any> {
     constructor(props: IProductsAsyncProps) {
         super(props);
         const { productsJSON, onRequestProducts } = props;
         if (!productsJSON) onRequestProducts();
     }
 
+    private loading = true;
+
     public render(): JSX.Element | null {
         const { productsJSON } = this.props;
-        if (!productsJSON) return null;
+        if (productsJSON) this.loading = false;
 
         return (
             <>
-                <Products productsJSON={productsJSON} />
+                <ClipLoader
+                    sizeUnit={'px'}
+                    size={30}
+                    color={'#123abc'}
+                    loading={this.loading}
+                />
+                {productsJSON && <Products productsJSON={productsJSON} />}
             </>
         );
     }
