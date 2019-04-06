@@ -1,57 +1,58 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
-import { updateProducts } from '../../actions';
-import * as Types from '../../types/components/ProductsTypes';
-import ProductsImages from './ProductsImages';
-import '../../css/components/Products.scss';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
+import { updateProducts } from '../../actions'
+import * as Types from '../../types/components/ProductsTypes'
+import ProductsImages from './ProductsImages'
+import '../../css/components/Products.scss'
 
 interface IProductsProps {
-    productsJSON: Types.IProductsJSON;
-    onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts;
+    productsJSON: Types.IProductsJSON
+    onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts
 }
 
 interface IProductsState {
-    complete: boolean;
+    complete: boolean
 }
-
-let isInitialRender: boolean = false;
 
 class Products extends React.PureComponent<IProductsProps, IProductsState> {
     constructor(props: IProductsProps) {
-        super(props);
+        super(props)
         this.state = {
             complete: false
-        };
+        }
+
+        if (document.readyState === 'interactive') this.isInitialRender = false
     }
+
+    private isInitialRender: boolean = true
 
     componentDidMount() {
         document.addEventListener('readystatechange', e => {
             if ((e.target as Document).readyState === 'complete') {
-                isInitialRender = true;
                 this.setState({
                     complete: true
-                });
+                })
             }
-        });
+        })
     }
 
     private handleClickWishListAdd(item: Types.IProductsJSON['productsJSON']) {
-        const { productsJSON, onUpdateProducts } = this.props;
-        item.isInWishList = !item.isInWishList;
-        onUpdateProducts(productsJSON);
+        const { productsJSON, onUpdateProducts } = this.props
+        item.isInWishList = !item.isInWishList
+        onUpdateProducts(productsJSON)
     }
 
     private handleClickWishListRemove(
         item: Types.IProductsJSON['productsJSON']
     ) {
-        const { productsJSON, onUpdateProducts } = this.props;
-        item.isInWishList = !item.isInWishList;
-        onUpdateProducts(productsJSON);
+        const { productsJSON, onUpdateProducts } = this.props
+        item.isInWishList = !item.isInWishList
+        onUpdateProducts(productsJSON)
     }
 
     public renderProductItems(): JSX.Element {
-        const { productsJSON } = this.props;
+        const { productsJSON } = this.props
 
         return (
             <ul className="product">
@@ -64,7 +65,8 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
                             >
                                 <img
                                     src={
-                                        this.state.complete || isInitialRender
+                                        this.state.complete ||
+                                        this.isInitialRender
                                             ? item.coverImage
                                             : ProductsImages[i]
                                     }
@@ -96,25 +98,25 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
                                     </button>
                                 )}
                             </li>
-                        );
+                        )
                     }
                 )}
             </ul>
-        );
+        )
     }
 
     public render(): JSX.Element {
-        return <>{this.renderProductItems()}</>;
+        return <>{this.renderProductItems()}</>
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onUpdateProducts: bindActionCreators(updateProducts, dispatch)
-    };
-};
+    }
+}
 
 export default connect(
     null,
     mapDispatchToProps
-)(Products);
+)(Products)
