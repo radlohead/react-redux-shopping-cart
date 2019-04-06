@@ -1,68 +1,68 @@
-'use strict';
+'use strict'
 
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack');
-const resolve = require('resolve');
-const PnpWebpackPlugin = require('pnp-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const safePostCssParser = require('postcss-safe-parser');
-const ManifestPlugin = require('webpack-manifest-plugin');
-const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
-const paths = require('./paths');
-const getClientEnvironment = require('./env');
-const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
-const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const fs = require('fs')
+const path = require('path')
+const webpack = require('webpack')
+const resolve = require('resolve')
+const PnpWebpackPlugin = require('pnp-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const safePostCssParser = require('postcss-safe-parser')
+const ManifestPlugin = require('webpack-manifest-plugin')
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
+const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
+const paths = require('./paths')
+const getClientEnvironment = require('./env')
+const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
+const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
+const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
-const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
+const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
 // Some apps do not need the benefits of saving a web request, so not inlining the chunk
 // makes for a smoother build process.
-const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
+const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false'
 
 // Check if TypeScript is setup
-const useTypeScript = fs.existsSync(paths.appTsConfig);
+const useTypeScript = fs.existsSync(paths.appTsConfig)
 
 // style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
-const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.module\.css$/
+const sassRegex = /\.(scss|sass)$/
+const sassModuleRegex = /\.module\.(scss|sass)$/
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
-    const isEnvDevelopment = webpackEnv === 'development';
-    const isEnvProduction = webpackEnv === 'production';
+    const isEnvDevelopment = webpackEnv === 'development'
+    const isEnvProduction = webpackEnv === 'production'
 
     // Webpack uses `publicPath` to determine where the app is being served from.
     // It requires a trailing slash, or the file assets will get an incorrect path.
     // In development, we always serve from the root. This makes config easier.
     const publicPath = isEnvProduction
         ? paths.servedPath
-        : isEnvDevelopment && '/';
+        : isEnvDevelopment && '/'
     // Some apps do not use client-side routing with pushState.
     // For these, "homepage" can be set to "." to enable relative asset paths.
-    const shouldUseRelativeAssetPaths = publicPath === './';
+    const shouldUseRelativeAssetPaths = publicPath === './'
 
     // `publicUrl` is just like `publicPath`, but we will provide it to our app
     // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
     // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
     const publicUrl = isEnvProduction
         ? publicPath.slice(0, -1)
-        : isEnvDevelopment && '';
+        : isEnvDevelopment && ''
     // Get environment variables to inject into our app.
-    const env = getClientEnvironment(publicUrl);
+    const env = getClientEnvironment(publicUrl)
 
     // common function to get style loaders
     const getStyleLoaders = (cssOptions, preProcessor) => {
@@ -102,17 +102,17 @@ module.exports = function(webpackEnv) {
                     sourceMap: isEnvProduction && shouldUseSourceMap
                 }
             }
-        ].filter(Boolean);
+        ].filter(Boolean)
         if (preProcessor) {
             loaders.push({
                 loader: require.resolve(preProcessor),
                 options: {
                     sourceMap: isEnvProduction && shouldUseSourceMap
                 }
-            });
+            })
         }
-        return loaders;
-    };
+        return loaders
+    }
 
     return {
         mode: isEnvProduction
@@ -254,7 +254,7 @@ module.exports = function(webpackEnv) {
             // We placed these paths second because we want `node_modules` to "win"
             // if there are any conflicts. This matches Node resolution mechanism.
             // https://github.com/facebook/create-react-app/issues/253
-            modules: [path.join(__dirname, 'src'), 'node_modules'].concat(
+            modules: ['node_modules'].concat(
                 // It is guaranteed to exist because we tweak it in `env.js`
                 process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
             ),
@@ -270,6 +270,7 @@ module.exports = function(webpackEnv) {
             alias: {
                 // Support React Native Web
                 // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+                '@src': path.resolve(__dirname, '../src'),
                 'react-native': 'react-native-web'
             },
             plugins: [
@@ -622,5 +623,5 @@ module.exports = function(webpackEnv) {
         // Turn off performance processing because we utilize
         // our own hints via the FileSizeReporter
         performance: false
-    };
-};
+    }
+}

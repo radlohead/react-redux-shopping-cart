@@ -4,7 +4,7 @@ import { bindActionCreators, Dispatch } from 'redux'
 import { updateProducts } from '../../actions'
 import * as Types from '../../types/components/ProductsTypes'
 import ProductsImages from './ProductsImages'
-import '../../css/components/Products.scss'
+import '@src/css/components/Products.scss'
 
 interface IProductsProps {
     productsJSON: Types.IProductsJSON

@@ -1,21 +1,21 @@
-import React, { ChangeEvent } from 'react';
-import * as Types from '../../types/components/CouponsTypes';
+import React, { ChangeEvent } from 'react'
+import * as Types from '../../types/components/CouponsTypes'
 
 interface ICouponProps {
-    couponsJSON: Types.ICouponsJSON;
+    couponsJSON: Types.ICouponsJSON
 }
 
 class Coupon extends React.PureComponent<ICouponProps> {
     constructor(props: ICouponProps) {
-        super(props);
+        super(props)
     }
 
     private handleChangeCoupon(e: ChangeEvent<HTMLSelectElement>) {
-        console.log(e.target.value);
+        console.log(e.target.value)
     }
 
     public render(): JSX.Element {
-        const { couponsJSON } = this.props;
+        const { couponsJSON } = this.props
 
         return (
             <>
@@ -29,13 +29,13 @@ class Coupon extends React.PureComponent<ICouponProps> {
                                 >
                                     {item.title}
                                 </option>
-                            );
+                            )
                         }
                     )}
                 </select>
             </>
-        );
+        )
     }
 }
 
-export default Coupon;
+export default Coupon
