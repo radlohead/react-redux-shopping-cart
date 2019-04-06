@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { updateProducts } from '../../actions'
+import { updateProducts } from '@src/actions'
 import * as Types from '../../types/components/ProductsTypes'
 import ProductsImages from './ProductsImages'
 import '@src/css/components/Products.scss'
