@@ -23,6 +23,7 @@ const getClientEnvironment = require('./env')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
+const SpritesmithPlugin = require('webpack-spritesmith')
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false'
@@ -254,7 +255,7 @@ module.exports = function(webpackEnv) {
             // We placed these paths second because we want `node_modules` to "win"
             // if there are any conflicts. This matches Node resolution mechanism.
             // https://github.com/facebook/create-react-app/issues/253
-            modules: ['node_modules'].concat(
+            modules: ['node_modules', 'assets/sprites'].concat(
                 // It is guaranteed to exist because we tweak it in `env.js`
                 process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
             ),
@@ -569,6 +570,7 @@ module.exports = function(webpackEnv) {
             // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
             // You can remove this if you don't use Moment.js:
             new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+            new SpritesmithPlugin(env.configSprite),
             // Generate a service worker script that will precache, and keep up to date,
             // the HTML & assets that are part of the Webpack build.
             isEnvProduction &&

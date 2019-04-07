@@ -1,0 +1,34 @@
+@import '@src/styles/sprite.scss';
+
+.gnb {
+    display: flex;
+    flex-flow: row nowrap;
+    list-style: none;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        min-width: 80px;
+        margin-left: 10px;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        a {
+            height: 100%;
+        }
+    }
+
+    &__index {
+        @include sprite($icon_01);
+    }
+
+    &__products {
+        @include sprite($icon_02);
+    }
+
+    &__wishlist {
+        @include sprite($icon_03);
+    }
+}
