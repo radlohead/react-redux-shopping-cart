@@ -7,7 +7,7 @@ const fetchCouponsItemApi = async () => {
     return await response.json()
 }
 
-function* fetchCouponsItem(param: any) {
+function* fetchCouponsItem() {
     const itemJSON = yield fetchCouponsItemApi()
     try {
         yield put(requestCoupons())
