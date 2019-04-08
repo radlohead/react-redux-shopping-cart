@@ -1,31 +1,29 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
-import { requestProducts } from '../../actions';
-import { Products, Spinners } from '../index';
-import * as Types from '../../types/components/ProductsTypes';
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
+import { requestAsyncProducts } from '../../actions'
+import { Products, Spinners } from '../index'
+import * as Types from '../../types/components/ProductsTypes'
 
 interface IProductsAsyncProps {
-    productsJSON: Types.IProductsJSON;
-    onRequestProducts(): void;
+    productsJSON: Types.IProductsJSON
+    onRequestAsyncProducts(): void
 }
 
 class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
-    private loading = true;
+    private loading = true
 
     componentDidMount() {
-        const { productsJSON, onRequestProducts } = this.props;
-        if (Array.isArray(productsJSON) && !productsJSON.length) {
-            onRequestProducts();
-        }
+        const { onRequestAsyncProducts } = this.props
+        onRequestAsyncProducts()
     }
 
     public render(): JSX.Element {
-        const { productsJSON } = this.props;
+        const { productsJSON } = this.props
         const productsJSONCallCheck =
-            Array.isArray(productsJSON) && productsJSON.length;
+            Array.isArray(productsJSON) && productsJSON.length
 
-        if (productsJSONCallCheck) this.loading = false;
+        if (productsJSONCallCheck) this.loading = false
 
         return (
             <>
@@ -34,27 +32,30 @@ class ProductsAsync extends React.PureComponent<IProductsAsyncProps> {
                     <Products productsJSON={productsJSON} />
                 )}
             </>
-        );
+        )
     }
 }
 
 interface IMapStateToProps {
-    products: IProductsAsyncProps;
+    products: IProductsAsyncProps
 }
 
 const mapStateToProps = (state: IMapStateToProps) => {
     return {
         productsJSON: state.products.productsJSON
-    };
-};
+    }
+}
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onRequestProducts: bindActionCreators(requestProducts, dispatch)
-    };
-};
+        onRequestAsyncProducts: bindActionCreators(
+            requestAsyncProducts,
+            dispatch
+        )
+    }
+}
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProductsAsync);
+)(ProductsAsync)
