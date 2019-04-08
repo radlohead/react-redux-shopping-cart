@@ -4,6 +4,7 @@ import {
     PRODUCTS_FETCHED,
     PRODUCTS_UPDATE,
     COUPONS_REQUEST,
+    COUPONS_ASYNC_REQUEST,
     COUPONS_FETCHED
 } from './ActionTypes'
 import * as Types from '../types/reducers/ReducerTypes'
@@ -37,6 +38,12 @@ export const updateProducts = (productsJSON: Types.IUpdateProducts) => {
 export const requestCoupons = () => {
     return {
         type: COUPONS_REQUEST
+    }
+}
+
+export const requestAsyncCoupons = () => {
+    return {
+        type: COUPONS_ASYNC_REQUEST
     }
 }
 

@@ -1,23 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
-import { requestCoupons } from '../../actions'
+import { requestAsyncCoupons } from '../../actions'
 import { Coupon, Spinners } from '../index'
 import * as Types from '../../types/components/CouponsTypes'
 
 interface ICouponAsyncProps {
     couponsJSON: Types.ICouponsJSON
-    onRequestCoupons(): void
+    onRequestAsyncCoupons(): void
 }
 
 class CouponAsync extends React.PureComponent<ICouponAsyncProps> {
     private loading = true
 
     componentDidMount() {
-        const { couponsJSON, onRequestCoupons } = this.props
-        if (Array.isArray(couponsJSON) && !couponsJSON.length) {
-            onRequestCoupons()
-        }
+        const { onRequestAsyncCoupons } = this.props
+        onRequestAsyncCoupons()
     }
 
     public render(): JSX.Element {
@@ -48,7 +46,7 @@ const mapStateToProps = (state: IMapStateToProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onRequestCoupons: bindActionCreators(requestCoupons, dispatch)
+        onRequestAsyncCoupons: bindActionCreators(requestAsyncCoupons, dispatch)
     }
 }
 

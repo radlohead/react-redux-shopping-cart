@@ -1,13 +1,20 @@
+import { put } from 'redux-saga/effects'
 import { requestCoupons, fetchCoupons } from '../actions'
-import { COUPONS_REQUEST, COUPONS_ERROR } from '../actions/ActionTypes'
-import { fetchItemList } from './withGetApi'
+import { COUPONS_ERROR } from '../actions/ActionTypes'
 
-export const couponListData = {
-    url: 'http://localhost:4000/coupons',
-    requestItems: requestCoupons,
-    fetchItems: fetchCoupons,
-    REQUEST_ITEM: COUPONS_REQUEST,
-    ERROR_ITEM: COUPONS_ERROR
+const fetchCouponsItemApi = async () => {
+    const response = await fetch('http://localhost:4000/coupons')
+    return await response.json()
 }
 
-export default fetchItemList(couponListData)
+function* fetchCouponsItem(param: any) {
+    const itemJSON = yield fetchCouponsItemApi()
+    try {
+        yield put(requestCoupons())
+        yield put(fetchCoupons(itemJSON))
+    } catch (e) {
+        yield put({ type: COUPONS_ERROR, message: e.message })
+    }
+}
+
+export default fetchCouponsItem
