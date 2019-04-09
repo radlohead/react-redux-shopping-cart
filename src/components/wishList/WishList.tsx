@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { CouponAsync } from '../index'
 import * as Types from '../../types/components/ProductsTypes'
+import '@src/css/components/WishList.scss'
 
 interface IWishListProps {
     productsJSON: Types.IProductsJSON
@@ -19,8 +20,12 @@ class WishList extends React.PureComponent<IWishListProps> {
                         if (!item.isInWishList) return
 
                         return (
-                            <li key={`${item.id}_${item.score}`}>
-                                {item.title}
+                            <li
+                                key={`${item.id}_${item.score}`}
+                                className="wishList__item"
+                            >
+                                <img src={item.coverImage} alt={item.title} />
+                                <h2>{item.title}</h2>
                             </li>
                         )
                     }
