@@ -24,8 +24,10 @@ class WishList extends React.PureComponent<IWishListProps> {
                                 key={`${item.id}_${item.score}`}
                                 className="wishList__item"
                             >
+                                <input type="checkbox" />
                                 <img src={item.coverImage} alt={item.title} />
                                 <h2>{item.title}</h2>
+                                <input type="number" />
                             </li>
                         )
                     }
