@@ -47,7 +47,9 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
         item: Types.IProductsJSON['productsJSON']
     ) {
         const { productsJSON, onUpdateProducts } = this.props
-        item.isInWishList = !item.isInWishList
+        item.count = 1
+        item.isChecked = false
+        item.isInWishList = false
         onUpdateProducts(productsJSON)
     }
 
