@@ -51,9 +51,6 @@ const products = produce(
             case PRODUCTS_ERROR:
                 draft.productsJSON = action.productsJSON
                 return
-            case WISHLIST_ITEM_COUNT:
-                draft.productsJSON = [...action.productsJSON]
-                return
             default:
                 return draft
         }

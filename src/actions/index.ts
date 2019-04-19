@@ -54,10 +54,3 @@ export const fetchCoupons = (couponsJSON: Types.IFetchCoupons) => {
         couponsJSON
     }
 }
-
-export const updateItemCount = (productsJSON: Types.IUpdateProducts) => {
-    return {
-        type: WISHLIST_ITEM_COUNT,
-        productsJSON
-    }
-}

@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { CouponAsync } from '../index'
 import * as Types from '../../types/components/ProductsTypes'
-import { updateItemCount } from '@src/actions'
+import { updateProducts } from '@src/actions'
 import '@src/css/components/WishList.scss'
 
 interface IWishListProps {
     productsJSON: Types.IProductsCountJSON
-    onUpdateItemCount(e: any): void
+    onUpdateProducts(productsJSON: Types.IProductsJSON): void
 }
 
 class WishList extends React.PureComponent<IWishListProps> {
     private handleChangeNumber(i: number, e: ChangeEvent<HTMLInputElement>) {
-        const { productsJSON, onUpdateItemCount } = this.props
+        const { productsJSON, onUpdateProducts } = this.props
         productsJSON[i].count = e.target.value
-        onUpdateItemCount(productsJSON)
+        onUpdateProducts(productsJSON)
     }
     private renderWishList(): JSX.Element | null {
         const { productsJSON } = this.props
@@ -38,10 +38,9 @@ class WishList extends React.PureComponent<IWishListProps> {
                                 <input
                                     type="number"
                                     value={item.count}
-                                    onChange={this.handleChangeNumber.bind(
-                                        this,
-                                        i
-                                    )}
+                                    onChange={e =>
+                                        this.handleChangeNumber(i, e)
+                                    }
                                 />
                             </li>
                         )
@@ -73,7 +72,7 @@ const mapStateToProps = (state: IMapStateToProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onUpdateItemCount: bindActionCreators(updateItemCount, dispatch)
+        onUpdateProducts: bindActionCreators(updateProducts, dispatch)
     }
 }
 
