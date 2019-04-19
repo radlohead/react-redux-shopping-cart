@@ -5,7 +5,8 @@ import {
     PRODUCTS_UPDATE,
     COUPONS_REQUEST,
     COUPONS_ASYNC_REQUEST,
-    COUPONS_FETCHED
+    COUPONS_FETCHED,
+    WISHLIST_ITEM_COUNT
 } from './ActionTypes'
 import * as Types from '../types/reducers/ReducerTypes'
 
@@ -51,5 +52,12 @@ export const fetchCoupons = (couponsJSON: Types.IFetchCoupons) => {
     return {
         type: COUPONS_FETCHED,
         couponsJSON
+    }
+}
+
+export const updateItemCount = (productsJSON: Types.IUpdateProducts) => {
+    return {
+        type: WISHLIST_ITEM_COUNT,
+        productsJSON
     }
 }

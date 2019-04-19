@@ -3,7 +3,8 @@ import {
     PRODUCTS_REQUEST,
     PRODUCTS_FETCHED,
     PRODUCTS_ERROR,
-    PRODUCTS_UPDATE
+    PRODUCTS_UPDATE,
+    WISHLIST_ITEM_COUNT
 } from '../actions/ActionTypes'
 import * as Types from '../types/reducers/ReducerTypes'
 
@@ -49,6 +50,9 @@ const products = produce(
                 return
             case PRODUCTS_ERROR:
                 draft.productsJSON = action.productsJSON
+                return
+            case WISHLIST_ITEM_COUNT:
+                draft.productsJSON = [...action.productsJSON]
                 return
             default:
                 return draft
