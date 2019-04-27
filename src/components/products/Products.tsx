@@ -78,6 +78,9 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
                                     <h2 className="product_item__info-title">
                                         {item.title}
                                     </h2>
+                                    <span className="product__item__info-price">
+                                        {item.price}
+                                    </span>
                                 </div>
                                 {!item.isInWishList && (
                                     <button

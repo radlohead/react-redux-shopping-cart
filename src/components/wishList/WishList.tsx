@@ -35,6 +35,9 @@ class WishList extends React.PureComponent<IWishListProps> {
                                 <input type="checkbox" />
                                 <img src={item.coverImage} alt={item.title} />
                                 <h2>{item.title}</h2>
+                                <span className="wishList__item-price">
+                                    {item.price}
+                                </span>
                                 <input
                                     type="number"
                                     value={item.count}
