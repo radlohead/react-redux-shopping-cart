@@ -53,10 +53,32 @@ class WishList extends React.PureComponent<IWishListProps> {
         )
     }
 
+    private renderTotalPrice(): JSX.Element {
+        const { productsJSON } = this.props
+        const json = productsJSON
+            .map((v: any) => {
+                if (v.isInWishList) return v
+            })
+            .filter((v: any) => {
+                if (v) return v
+            })
+
+        let totalPrice = 0
+        if (json.length) {
+            totalPrice = json
+                .reduce((p: any, c: any) => {
+                    return [...p, c.price]
+                }, [])
+                .reduce((p: any, c: any) => p + c)
+        }
+        return <strong className="total-price">{totalPrice}</strong>
+    }
+
     public render(): JSX.Element {
         return (
             <>
                 {this.renderWishList()}
+                {this.renderTotalPrice()}
                 <CouponAsync />
             </>
         )
