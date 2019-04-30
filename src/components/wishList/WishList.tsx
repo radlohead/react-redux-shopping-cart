@@ -55,19 +55,19 @@ class WishList extends React.PureComponent<IWishListProps> {
 
     private totalPrice(): number {
         const { productsJSON } = this.props
-        const wishListItems = productsJSON
+        const totalPrice = productsJSON
             .map((v: Types.IProductsCountJSON['productsJSON']) => {
                 if (v.isInWishList) return v
             })
             .filter((v: Types.IProductsCountJSON['productsJSON']) => {
                 if (v) return v
             })
-
-        if (!wishListItems.length) return 0
-        const totalPrice = wishListItems
-            .reduce((p: [], c: Types.IProductsCountJSON['productsJSON']) => {
-                return [...p, c.price]
-            }, [])
+            .reduce(
+                (p: [], c: Types.IProductsCountJSON['productsJSON']) => {
+                    return [...p, c.price]
+                },
+                [0]
+            )
             .reduce((p: number, c: number) => p + c)
         return totalPrice
     }
