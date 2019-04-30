@@ -3,8 +3,7 @@ import {
     PRODUCTS_REQUEST,
     PRODUCTS_FETCHED,
     PRODUCTS_ERROR,
-    PRODUCTS_UPDATE,
-    WISHLIST_ITEM_COUNT
+    PRODUCTS_UPDATE
 } from '../actions/ActionTypes'
 import * as Types from '../types/reducers/ReducerTypes'
 

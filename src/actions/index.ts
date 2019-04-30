@@ -6,7 +6,8 @@ import {
     COUPONS_REQUEST,
     COUPONS_ASYNC_REQUEST,
     COUPONS_FETCHED,
-    WISHLIST_ITEM_COUNT
+    WISHLIST_ITEM_COUNT,
+    TOTAL_PRICE
 } from './ActionTypes'
 import * as Types from '../types/reducers/ReducerTypes'
 
@@ -52,5 +53,12 @@ export const fetchCoupons = (couponsJSON: Types.IFetchCoupons) => {
     return {
         type: COUPONS_FETCHED,
         couponsJSON
+    }
+}
+
+export const updateTotalPrice = (totalPrice: number) => {
+    return {
+        type: TOTAL_PRICE,
+        totalPrice
     }
 }
