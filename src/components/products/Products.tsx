@@ -137,7 +137,13 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
     }
 }
 
-const mapStateToProps = (state: any) => {
+interface IMapStateToProps {
+    wishList: {
+        totalPrice: number
+    }
+}
+
+const mapStateToProps = (state: IMapStateToProps) => {
     return {
         totalPrice: state.wishList.totalPrice
     }
