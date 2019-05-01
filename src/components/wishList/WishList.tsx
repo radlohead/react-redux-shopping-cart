@@ -5,6 +5,7 @@ import { CouponAsync } from '../index'
 import * as Types from '../../types/components/ProductsTypes'
 import { updateProducts, updateTotalPrice } from '@src/actions'
 import '@src/css/components/WishList.scss'
+import { TotalPrice } from '../utils/TotalPrice'
 
 interface IWishListProps {
     productsJSON: Types.IProductsCountJSON
@@ -55,27 +56,9 @@ class WishList extends React.PureComponent<IWishListProps> {
         )
     }
 
-    private totalPrice(): void {
-        const { productsJSON, onUpdateTotalPrice } = this.props
-        const totalPrice = productsJSON
-            .map((v: Types.IProductsCountJSON['productsJSON']) => {
-                if (v.isInWishList) return v
-            })
-            .filter((v: Types.IProductsCountJSON['productsJSON']) => {
-                if (v) return v
-            })
-            .reduce(
-                (p: [], c: Types.IProductsCountJSON['productsJSON']) => {
-                    return [...p, c.price]
-                },
-                [0]
-            )
-            .reduce((p: number, c: number) => p + c)
-        onUpdateTotalPrice(totalPrice)
-    }
-
     componentDidMount() {
-        this.totalPrice()
+        const { productsJSON, onUpdateTotalPrice } = this.props
+        TotalPrice(productsJSON, onUpdateTotalPrice)
     }
 
     public render(): JSX.Element {

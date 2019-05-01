@@ -36,6 +36,8 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
                 })
             }
         })
+
+        this.totalPrice()
     }
 
     private totalPrice(): void {
