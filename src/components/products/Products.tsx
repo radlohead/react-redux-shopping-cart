@@ -5,6 +5,7 @@ import { updateProducts, updateTotalPrice } from '@src/actions'
 import * as Types from '../../types/components/ProductsTypes'
 import ProductsImages from './ProductsImages'
 import '@src/css/components/Products.scss'
+import { TotalPrice } from '../utils/TotalPrice'
 
 interface IProductsProps {
     productsJSON: Types.IProductsJSON
@@ -29,6 +30,7 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
     private isInitialRender: boolean = true
 
     componentDidMount() {
+        const { productsJSON, onUpdateTotalPrice } = this.props
         document.addEventListener('readystatechange', e => {
             if ((e.target as Document).readyState === 'complete') {
                 this.setState({
@@ -37,44 +39,33 @@ class Products extends React.PureComponent<IProductsProps, IProductsState> {
             }
         })
 
-        this.totalPrice()
-    }
-
-    private totalPrice(): void {
-        const { productsJSON, onUpdateTotalPrice } = this.props
-        const totalPrice = productsJSON
-            .map((v: Types.IProductsCountJSON['productsJSON']) => {
-                if (v.isInWishList) return v
-            })
-            .filter((v: Types.IProductsCountJSON['productsJSON']) => {
-                if (v) return v
-            })
-            .reduce(
-                (p: [], c: Types.IProductsCountJSON['productsJSON']) => {
-                    return [...p, c.price]
-                },
-                [0]
-            )
-            .reduce((p: number, c: number) => p + c)
-        onUpdateTotalPrice(totalPrice)
+        TotalPrice(productsJSON, onUpdateTotalPrice)
     }
 
     private handleClickWishListAdd(item: Types.IProductsJSON['productsJSON']) {
-        const { productsJSON, onUpdateProducts } = this.props
+        const {
+            productsJSON,
+            onUpdateProducts,
+            onUpdateTotalPrice
+        } = this.props
         item.isInWishList = !item.isInWishList
         onUpdateProducts(productsJSON)
-        this.totalPrice()
+        TotalPrice(productsJSON, onUpdateTotalPrice)
     }
 
     private handleClickWishListRemove(
         item: Types.IProductsJSON['productsJSON']
     ) {
-        const { productsJSON, onUpdateProducts } = this.props
+        const {
+            productsJSON,
+            onUpdateProducts,
+            onUpdateTotalPrice
+        } = this.props
         item.count = 1
         item.isChecked = false
         item.isInWishList = false
         onUpdateProducts(productsJSON)
-        this.totalPrice()
+        TotalPrice(productsJSON, onUpdateTotalPrice)
     }
 
     public renderProductItems(): JSX.Element {
