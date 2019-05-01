@@ -9,7 +9,6 @@ import '@src/css/components/Products.scss'
 interface IProductsProps {
     productsJSON: Types.IProductsJSON
     onUpdateProducts(productsJSON: Types.IProductsJSON): Types.IUpdateProducts
-    onUpdateTotalPrice(totalPrice: number): void
 }
 
 interface IProductsState {
