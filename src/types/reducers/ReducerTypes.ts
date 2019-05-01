@@ -22,8 +22,12 @@ export interface IUpdateProducts {
 }
 
 export interface IFetchCoupons {
-    type: string
     title: string
     discountRate?: number
     discountAmount?: number
+}
+
+export interface IWishList {
+    type: string
+    totalPrice: number
 }
