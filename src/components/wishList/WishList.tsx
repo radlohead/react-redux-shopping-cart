@@ -3,22 +3,29 @@ import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 import { CouponAsync } from '../index'
 import * as Types from '../../types/components/ProductsTypes'
-import { updateProducts, updateTotalPrice } from '@src/actions'
+import { updateProducts, updateTotalPrice, getWishListItem } from '@src/actions'
 import '@src/css/components/WishList.scss'
 import { TotalPrice } from '../utils/TotalPrice'
 
 interface IWishListProps {
     productsJSON: Types.IProductsCountJSON
     totalPrice: number
+    items: []
     onUpdateProducts(productsJSON: Types.IProductsJSON): void
     onUpdateTotalPrice(totalPrice: number): void
+    onGetWishListItem(items: any): void
 }
 
 class WishList extends React.PureComponent<IWishListProps> {
     private handleChangeNumber(i: number, e: ChangeEvent<HTMLInputElement>) {
-        const { productsJSON, onUpdateProducts } = this.props
+        const {
+            productsJSON,
+            onUpdateProducts,
+            onUpdateTotalPrice
+        } = this.props
         productsJSON[i].count = e.target.value
         onUpdateProducts(productsJSON)
+        TotalPrice(productsJSON, onUpdateTotalPrice)
     }
     private renderWishList(): JSX.Element | null {
         const { productsJSON } = this.props
@@ -57,8 +64,13 @@ class WishList extends React.PureComponent<IWishListProps> {
     }
 
     componentDidMount() {
-        const { productsJSON, onUpdateTotalPrice } = this.props
+        const {
+            productsJSON,
+            onUpdateTotalPrice,
+            onGetWishListItem
+        } = this.props
         TotalPrice(productsJSON, onUpdateTotalPrice)
+        onGetWishListItem(productsJSON)
     }
 
     public render(): JSX.Element {
@@ -77,19 +89,22 @@ class WishList extends React.PureComponent<IWishListProps> {
 interface IMapStateToProps {
     products: IWishListProps
     wishList: IWishListProps
+    items: IWishListProps
 }
 
 const mapStateToProps = (state: IMapStateToProps) => {
     return {
         productsJSON: state.products.productsJSON,
-        totalPrice: state.wishList.totalPrice
+        totalPrice: state.wishList.totalPrice,
+        items: state.wishList.items
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         onUpdateProducts: bindActionCreators(updateProducts, dispatch),
-        onUpdateTotalPrice: bindActionCreators(updateTotalPrice, dispatch)
+        onUpdateTotalPrice: bindActionCreators(updateTotalPrice, dispatch),
+        onGetWishListItem: bindActionCreators(getWishListItem, dispatch)
     }
 }
 
