@@ -30,4 +30,5 @@ export interface IFetchCoupons {
 export interface IWishList {
     type: string
     totalPrice: number
+    items: IFetchProducts[]
 }

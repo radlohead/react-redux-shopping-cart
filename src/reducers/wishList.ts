@@ -2,7 +2,7 @@ import produce from 'immer'
 import { TOTAL_PRICE, GET_WISHLIST_ITEMS } from '../actions/ActionTypes'
 import * as Types from '../types/reducers/ReducerTypes'
 
-const wishList = produce((draft = {}, action: Types.IWishList | any) => {
+const wishList = produce((draft = {}, action: Types.IWishList) => {
     switch (action.type) {
         case GET_WISHLIST_ITEMS:
             const wishListItems = action.items.filter(
