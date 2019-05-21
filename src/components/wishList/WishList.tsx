@@ -46,7 +46,7 @@ class WishList extends React.PureComponent<IWishListProps> {
                                 <img src={item.coverImage} alt={item.title} />
                                 <h2>{item.title}</h2>
                                 <span className="wishList__item-price">
-                                    {item.price}
+                                    {Number(item.price) * Number(item.count)}
                                 </span>
                                 <input
                                     type="number"
