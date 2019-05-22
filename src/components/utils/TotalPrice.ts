@@ -14,7 +14,7 @@ export const TotalPrice = (
             })
             .reduce(
                 (p: [], c: Types.IProductsCountJSON['productsJSON']) => {
-                    return [...p, c.price]
+                    return [...p, c.price * Number(c.count)]
                 },
                 [0]
             )
