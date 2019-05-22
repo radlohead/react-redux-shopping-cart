@@ -23,7 +23,8 @@ class WishList extends React.PureComponent<IWishListProps> {
             onUpdateProducts,
             onUpdateTotalPrice
         } = this.props
-        productsJSON[i].count = e.target.value
+        productsJSON[i].count =
+            Number(e.target.value) <= 0 ? '1' : e.target.value
         onUpdateProducts(productsJSON)
         TotalPrice(productsJSON, onUpdateTotalPrice)
     }
